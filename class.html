@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>윤슬향방 | 원데이 조향 클래스</title>
+  <meta name="description" content="포항 영일대 해변 걸어서 5분, 골목 2층 향수 공방. 어려운 용어 없이 대화로 나만의 향을 찾는 원데이 조향 클래스.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="윤슬향방">
+  <meta property="og:locale" content="ko_KR">
+  <meta property="og:title" content="윤슬향방 | 원데이 조향 클래스">
+  <meta property="og:description" content="포항 영일대 해변 걸어서 5분, 골목 2층 향수 공방. 어려운 용어 없이 대화로 나만의 향을 찾는 원데이 조향 클래스.">
+  <meta property="og:url" content="https://내주소/class.html">
+  <meta property="og:image" content="https://내주소/images/class.jpg">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+  <style>
+    :root {
+      --bg: #F5EFE4;
+      --text: #2F4A3F;
+      --sub: #8FA89A;
+      --accent: #C9A35B;
+      --card-bg: #FAF6EE;
+      --placeholder-bg: #E5E2DC;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    body {
+      font-family: "Pretendard", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      font-size: 17px;
+      line-height: 1.65;
+      word-break: keep-all;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+
+    /* 위 메뉴 (index.html과 동일) */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background-color: var(--bg);
+      border-bottom: 1px solid rgba(143, 168, 154, 0.35);
+    }
+
+    .header-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 4px;
+      min-height: 56px;
+      white-space: nowrap;
+    }
+
+    .brand {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text);
+      display: inline-flex;
+      align-items: center;
+      min-height: 48px;
+      padding: 0 4px;
+      flex-shrink: 0;
+    }
+
+    .main-nav {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      flex-shrink: 1;
+    }
+
+    .main-nav a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 5px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    .header-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 10px;
+      background-color: var(--accent);
+      color: var(--text);
+      font-size: 14px;
+      font-weight: 700;
+      border-radius: 6px;
+      flex-shrink: 0;
+    }
+
+    /* 버튼 공통 */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 20px;
+      font-size: 17px;
+      font-weight: 600;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      text-align: center;
+      font-family: inherit;
+    }
+
+    .btn-accent {
+      background-color: var(--accent);
+      color: var(--text);
+    }
+
+    .btn-sub {
+      background-color: var(--sub);
+      color: var(--text);
+    }
+
+    /* 사진 및 대체 상자 */
+    .photo-frame {
+      width: 100%;
+      border-radius: 12px;
+      overflow: hidden;
+      background-color: var(--placeholder-bg);
+      position: relative;
+      aspect-ratio: 16 / 10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .photo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .photo-fallback {
+      display: none;
+      width: 100%;
+      height: 100%;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--placeholder-bg);
+      color: var(--text);
+      font-size: 15px;
+      font-weight: 500;
+      padding: 16px;
+      text-align: center;
+    }
+
+    .photo-frame.is-missing img {
+      display: none;
+    }
+
+    .photo-frame.is-missing .photo-fallback {
+      display: flex;
+    }
+
+    /* 블록 공통 */
+    section {
+      padding: 48px 0;
+    }
+
+    .section-title {
+      font-size: 26px;
+      font-weight: 700;
+      line-height: 1.35;
+      margin-bottom: 16px;
+      color: var(--text);
+    }
+
+    .section-body {
+      font-size: 17px;
+      line-height: 1.75;
+    }
+
+    /* 1. 마음 끌기 */
+    .lead-section {
+      padding: 28px 0 44px;
+    }
+
+    .lead-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .lead-title {
+      font-size: 28px;
+      font-weight: 700;
+      line-height: 1.35;
+    }
+
+    /* 2. 이런 고민 & 3. 이렇게 해결 */
+    .story-box {
+      background-color: var(--card-bg);
+      border: 1px solid rgba(143, 168, 154, 0.5);
+      border-radius: 12px;
+      padding: 28px 20px;
+    }
+
+    /* 4. 믿을 수 있는 이유 */
+    .trust-strip {
+      background-color: var(--sub);
+      color: var(--text);
+      padding: 22px 0;
+    }
+
+    .trust-text {
+      text-align: center;
+      font-size: 17px;
+      font-weight: 600;
+      line-height: 1.6;
+    }
+
+    /* 5. 가격 · 시간 */
+    .price-card {
+      background-color: var(--card-bg);
+      border: 1px solid rgba(143, 168, 154, 0.5);
+      border-radius: 12px;
+      padding: 28px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .price-info {
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .price-note {
+      font-size: 17px;
+    }
+
+    /* 6. 예약 문의 */
+    .contact-box {
+      background-color: var(--card-bg);
+      border: 1px solid rgba(143, 168, 154, 0.5);
+      border-radius: 12px;
+      padding: 28px 20px;
+    }
+
+    .contact-desc {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+
+    .contact-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .contact-buttons .btn {
+      flex: 1 1 140px;
+    }
+
+    .status-toast {
+      display: none;
+      margin-top: 12px;
+      padding: 12px 16px;
+      border-radius: 8px;
+      background-color: var(--sub);
+      color: var(--text);
+      font-size: 15px;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    .status-toast.is-visible {
+      display: block;
+    }
+
+    /* 맨 아래 (index.html과 동일) */
+    .site-footer {
+      padding: 36px 0 48px;
+      border-top: 1px solid rgba(143, 168, 154, 0.4);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .footer-info {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin-bottom: 12px;
+    }
+
+    .footer-ai-notice {
+      font-size: 14px;
+    }
+
+    /* 넓은 화면 (최대 1100px 안으로) */
+    @media (min-width: 768px) {
+      .header-inner {
+        padding: 0 16px;
+        gap: 16px;
+      }
+
+      .brand {
+        font-size: 18px;
+      }
+
+      .main-nav {
+        gap: 12px;
+      }
+
+      .main-nav a {
+        font-size: 16px;
+        padding: 0 10px;
+      }
+
+      .header-cta {
+        font-size: 15px;
+        padding: 0 16px;
+      }
+
+      .lead-grid {
+        flex-direction: row-reverse;
+        align-items: center;
+        gap: 40px;
+      }
+
+      .lead-grid > * {
+        flex: 1 1 50%;
+      }
+
+      .lead-title {
+        font-size: 36px;
+      }
+
+      .story-box,
+      .price-card,
+      .contact-box {
+        padding: 36px 32px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 위 메뉴 -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="brand">윤슬향방</a>
+      <nav class="main-nav" aria-label="주요 메뉴">
+        <a href="index.html#about">소개</a>
+        <a href="index.html#class">클래스</a>
+        <a href="works.html">작품</a>
+        <a href="index.html#news">소식</a>
+        <a href="index.html#contact">문의</a>
+      </nav>
+      <a href="index.html#contact" class="header-cta">예약 문의</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- 1. 마음 끌기 -->
+    <section class="lead-section">
+      <div class="container lead-grid">
+        <div class="photo-frame">
+          <img src="images/class.jpg" alt="원데이 조향 클래스" onerror="this.parentElement.classList.add('is-missing')">
+          <div class="photo-fallback">class.jpg</div>
+        </div>
+        <div>
+          <h1 class="lead-title">나만의 향수,<br>무엇부터 시작할까요?</h1>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. 이런 고민 -->
+    <section>
+      <div class="container">
+        <div class="story-box">
+          <h2 class="section-title">향수 용어가 어렵고,<br>내 취향을 잘 모르겠어요</h2>
+          <p class="section-body">처음 오시는 분들이 가장 많이 하시는 말이에요.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. 이렇게 해결 -->
+    <section>
+      <div class="container">
+        <div class="story-box">
+          <h2 class="section-title">대화로 떠올리고, 시향지로 골라요</h2>
+          <p class="section-body">
+            좋아하는 계절과 장소를 여쭤보며 시작해요.<br>
+            마음에 드는 향을 모아 조금씩 비율을 맞춰요.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. 믿을 수 있는 이유 -->
+    <div class="trust-strip" role="region" aria-label="믿을 수 있는 이유">
+      <div class="container">
+        <p class="trust-text">10년 차 조향사 · 120가지 향료 · 포항 바다를 담은 '윤슬 베이스'</p>
+      </div>
+    </div>
+
+    <!-- 5. 가격 · 시간 -->
+    <section>
+      <div class="container">
+        <div class="price-card">
+          <h2 class="section-title">원데이 조향 클래스</h2>
+          <p class="price-info">약 2시간 · 1인 72,000원 · 30ml 향수 한 병</p>
+          <p class="price-note">예약제 · 날짜와 인원은 문의해 주세요</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. 예약 문의 -->
+    <section id="contact">
+      <div class="container">
+        <div class="contact-box">
+          <p class="contact-desc">천천히 편안하게 물어봐 주세요.</p>
+          <div class="contact-buttons">
+            <a href="tel:054-000-0000" class="btn btn-accent">전화하기</a>
+            <a href="[확인 필요]" target="_blank" rel="noopener" class="btn btn-sub" data-pending="true">카카오톡 문의</a>
+          </div>
+          <div id="pending-notice" class="status-toast" role="status" aria-live="polite">준비 중이에요</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 맨 아래 (index.html과 동일) -->
+  <footer class="site-footer">
+    <div class="container">
+      <ul class="footer-info">
+        <li>상호: 윤슬향방</li>
+        <li>대표자: 김윤슬</li>
+        <li>사업자등록번호: 12345678</li>
+        <li>주소: 포항 영일대 해변에서 걸어서 5분, 골목 2층 · 123-567</li>
+        <li>이메일: yoonseol@1234567</li>
+      </ul>
+      <p class="footer-ai-notice">일부 사진은 AI로 만들었습니다</p>
+    </div>
+  </footer>
+
+  <script>
+    // 사진이 없을 때 파일 이름 상자 표시 보정
+    document.querySelectorAll('.photo-frame img').forEach(function (img) {
+      if (img.complete && img.naturalWidth === 0) {
+        img.parentElement.classList.add('is-missing');
+      }
+    });
+
+    // 주소가 [확인 필요]인 링크는 누르면 "준비 중이에요" 안내
+    var noticeEl = document.getElementById('pending-notice');
+    document.querySelectorAll('[data-pending="true"]').forEach(function (link) {
+      link.addEventListener('click', function (e) {
+        e.preventDefault();
+        if (noticeEl) {
+          noticeEl.textContent = '준비 중이에요';
+          noticeEl.classList.add('is-visible');
+        }
+        alert('준비 중이에요');
+      });
+    });
+
+    // 예약 폼 제출 시 안내
+    document.querySelectorAll('form').forEach(function (form) {
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var msg = '온라인 예약은 준비 중이에요. 전화나 카카오톡으로 문의해 주세요';
+        if (noticeEl) {
+          noticeEl.textContent = msg;
+          noticeEl.classList.add('is-visible');
+        }
+        alert(msg);
+      });
+    });
+  </script>
+</body>
+</html>
