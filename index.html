@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>윤슬향방 | 포항 영일대 향수 공방 · 원데이 조향 클래스</title>
+  <meta name="description" content="포항 영일대 해변 걸어서 5분, 골목 2층 향수 공방. 어려운 용어 없이 대화로 나만의 향을 찾는 원데이 조향 클래스.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="윤슬향방">
+  <meta property="og:locale" content="ko_KR">
+  <meta property="og:title" content="윤슬향방 | 포항 영일대 향수 공방 · 원데이 조향 클래스">
+  <meta property="og:description" content="포항 영일대 해변 걸어서 5분, 골목 2층 향수 공방. 어려운 용어 없이 대화로 나만의 향을 찾는 원데이 조향 클래스.">
+  <meta property="og:url" content="https://내주소/">
+  <meta property="og:image" content="https://내주소/images/hero.jpg">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+  <style>
+    :root {
+      --bg: #F5EFE4;
+      --text: #2F4A3F;
+      --sub: #8FA89A;
+      --accent: #C9A35B;
+      --card-bg: #FAF6EE;
+      --placeholder-bg: #E5E2DC;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    body {
+      font-family: "Pretendard", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      font-size: 17px;
+      line-height: 1.65;
+      word-break: keep-all;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+
+    /* 위 메뉴 */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background-color: var(--bg);
+      border-bottom: 1px solid rgba(143, 168, 154, 0.35);
+    }
+
+    .header-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 4px;
+      min-height: 56px;
+      white-space: nowrap;
+    }
+
+    .brand {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text);
+      display: inline-flex;
+      align-items: center;
+      min-height: 48px;
+      padding: 0 4px;
+      flex-shrink: 0;
+    }
+
+    .main-nav {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      flex-shrink: 1;
+    }
+
+    .main-nav a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 5px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    .header-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 10px;
+      background-color: var(--accent);
+      color: var(--text);
+      font-size: 14px;
+      font-weight: 700;
+      border-radius: 6px;
+      flex-shrink: 0;
+    }
+
+    /* 버튼 공통 */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 20px;
+      font-size: 17px;
+      font-weight: 600;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      text-align: center;
+      font-family: inherit;
+    }
+
+    .btn-accent {
+      background-color: var(--accent);
+      color: var(--text);
+    }
+
+    .btn-sub {
+      background-color: var(--sub);
+      color: var(--text);
+    }
+
+    .btn-outline {
+      background-color: transparent;
+      border: 1.5px solid var(--text);
+      color: var(--text);
+    }
+
+    /* 사진 및 대체 상자 */
+    .photo-frame {
+      width: 100%;
+      border-radius: 12px;
+      overflow: hidden;
+      background-color: var(--placeholder-bg);
+      position: relative;
+      aspect-ratio: 16 / 10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .photo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .photo-fallback {
+      display: none;
+      width: 100%;
+      height: 100%;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--placeholder-bg);
+      color: var(--text);
+      font-size: 15px;
+      font-weight: 500;
+      padding: 16px;
+      text-align: center;
+    }
+
+    .photo-frame.is-missing img {
+      display: none;
+    }
+
+    .photo-frame.is-missing .photo-fallback {
+      display: flex;
+    }
+
+    /* 블록 공통 */
+    section {
+      padding: 56px 0;
+    }
+
+    .section-title {
+      font-size: 26px;
+      font-weight: 700;
+      line-height: 1.35;
+      margin-bottom: 24px;
+      color: var(--text);
+    }
+
+    /* ① 첫 화면 */
+    .hero-section {
+      padding: 28px 0 40px;
+    }
+
+    .hero-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .hero-title {
+      font-size: 28px;
+      font-weight: 700;
+      line-height: 1.35;
+      margin-bottom: 14px;
+    }
+
+    .hero-desc {
+      font-size: 17px;
+      margin-bottom: 24px;
+      color: var(--text);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .hero-actions .btn {
+      flex: 1 1 140px;
+    }
+
+    /* ② 신뢰 띠 */
+    .trust-strip {
+      background-color: var(--sub);
+      color: var(--text);
+      padding: 18px 0;
+    }
+
+    .trust-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      text-align: center;
+      font-size: 17px;
+      font-weight: 600;
+    }
+
+    /* ③ 소개 */
+    .about-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .about-body {
+      font-size: 17px;
+      line-height: 1.75;
+    }
+
+    /* ④ 클래스 */
+    .class-lead-photo {
+      margin-bottom: 24px;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    .card {
+      background-color: var(--card-bg);
+      border: 1px solid rgba(143, 168, 154, 0.5);
+      border-radius: 12px;
+      padding: 24px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .card-title {
+      font-size: 21px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .card-meta {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-size: 17px;
+    }
+
+    .card-steps {
+      margin-top: 8px;
+      padding-top: 10px;
+      border-top: 1px dashed var(--sub);
+      font-size: 15px;
+    }
+
+    .class-note {
+      margin-top: 20px;
+      font-size: 17px;
+      text-align: center;
+      padding: 14px;
+      background-color: var(--card-bg);
+      border-radius: 8px;
+      border: 1px solid rgba(143, 168, 154, 0.4);
+    }
+
+    /* ⑤ 작품 */
+    .work-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    .work-item {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .work-caption {
+      font-size: 17px;
+      font-weight: 500;
+    }
+
+    .work-more {
+      margin-top: 24px;
+      text-align: center;
+    }
+
+    /* ⑥ 소식 */
+    .news-card {
+      background-color: var(--card-bg);
+      border: 1px solid rgba(143, 168, 154, 0.5);
+      border-radius: 12px;
+      padding: 22px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .news-title {
+      font-size: 19px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .news-desc {
+      font-size: 17px;
+    }
+
+    .news-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 48px;
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: underline;
+      text-underline-offset: 4px;
+      align-self: flex-start;
+    }
+
+    /* ⑦ 자주 묻는 질문 */
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .faq-item {
+      background-color: var(--card-bg);
+      border: 1px solid rgba(143, 168, 154, 0.5);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .faq-question {
+      width: 100%;
+      min-height: 52px;
+      padding: 14px 18px;
+      background: none;
+      border: none;
+      text-align: left;
+      font-family: inherit;
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--text);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .faq-answer {
+      display: none;
+      padding: 0 18px 16px;
+      font-size: 17px;
+      border-top: 1px solid rgba(143, 168, 154, 0.25);
+      padding-top: 12px;
+    }
+
+    .faq-item.is-open .faq-answer {
+      display: block;
+    }
+
+    /* ⑧ 문의 */
+    .contact-box {
+      background-color: var(--card-bg);
+      border: 1px solid rgba(143, 168, 154, 0.5);
+      border-radius: 12px;
+      padding: 28px 20px;
+    }
+
+    .contact-desc {
+      font-size: 17px;
+      margin-bottom: 20px;
+    }
+
+    .contact-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .contact-buttons .btn {
+      flex: 1 1 140px;
+    }
+
+    .contact-info {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 17px;
+    }
+
+    /* 안내 메시지 표시줄 */
+    .status-toast {
+      display: none;
+      margin-top: 12px;
+      padding: 12px 16px;
+      border-radius: 8px;
+      background-color: var(--sub);
+      color: var(--text);
+      font-size: 15px;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    .status-toast.is-visible {
+      display: block;
+    }
+
+    /* ⑨ 바닥글 */
+    .site-footer {
+      padding: 36px 0 48px;
+      border-top: 1px solid rgba(143, 168, 154, 0.4);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .footer-info {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin-bottom: 12px;
+    }
+
+    .footer-ai-notice {
+      font-size: 14px;
+    }
+
+    /* 넓은 화면 (최대 1100px 안으로) */
+    @media (min-width: 768px) {
+      .header-inner {
+        padding: 0 16px;
+        gap: 16px;
+      }
+
+      .brand {
+        font-size: 18px;
+      }
+
+      .main-nav {
+        gap: 12px;
+      }
+
+      .main-nav a {
+        font-size: 16px;
+        padding: 0 10px;
+      }
+
+      .header-cta {
+        font-size: 15px;
+        padding: 0 16px;
+      }
+
+      .hero-grid {
+        flex-direction: row-reverse;
+        align-items: center;
+        gap: 40px;
+      }
+
+      .hero-grid > * {
+        flex: 1 1 50%;
+      }
+
+      .hero-title {
+        font-size: 36px;
+      }
+
+      .trust-list {
+        flex-direction: row;
+        justify-content: space-around;
+        gap: 24px;
+      }
+
+      .about-grid {
+        flex-direction: row;
+        align-items: center;
+        gap: 40px;
+      }
+
+      .about-grid > * {
+        flex: 1 1 50%;
+      }
+
+      .card-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .work-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 위 메뉴 -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="brand">윤슬향방</a>
+      <nav class="main-nav" aria-label="주요 메뉴">
+        <a href="index.html#about">소개</a>
+        <a href="index.html#class">클래스</a>
+        <a href="works.html">작품</a>
+        <a href="index.html#news">소식</a>
+        <a href="index.html#contact">문의</a>
+      </nav>
+      <a href="index.html#contact" class="header-cta">예약 문의</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- ① 첫 화면 -->
+    <section class="hero-section">
+      <div class="container hero-grid">
+        <div class="photo-frame">
+          <img src="images/hero.jpg" alt="공방 작업대" onerror="this.parentElement.classList.add('is-missing')">
+          <div class="photo-fallback">hero.jpg</div>
+        </div>
+        <div class="hero-content">
+          <h1 class="hero-title">영일대 바다의 윤슬을<br>한 병의 향으로</h1>
+          <p class="hero-desc">어려운 용어는 모르셔도 괜찮아요.<br>계절과 기억을 묻는 대화로 나만의 향을 찾아요.</p>
+          <div class="hero-actions">
+            <a href="#class" class="btn btn-accent">클래스 보기</a>
+            <a href="tel:054-000-0000" class="btn btn-sub">전화로 문의</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ② 신뢰 띠 -->
+    <div class="trust-strip" role="region" aria-label="공방 특징">
+      <div class="container">
+        <ul class="trust-list">
+          <li>10년 차 조향사</li>
+          <li>120가지 향료</li>
+          <li>포항 바다를 담은 '윤슬 베이스'</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ③ 소개 -->
+    <section id="about">
+      <div class="container about-grid">
+        <div class="photo-frame">
+          <img src="images/about.jpg" alt="향료 선반" onerror="this.parentElement.classList.add('is-missing')">
+          <div class="photo-fallback">about.jpg</div>
+        </div>
+        <div>
+          <h2 class="section-title">골목 2층의<br>조용한 향수 공방</h2>
+          <p class="about-body">
+            포항 영일대 해변에서 걸어서 5분, 골목 안쪽 2층에 있어요.<br>
+            10년 차 조향사가 120가지 향료를 갖추고 기다립니다.<br>
+            포항 바다를 담은 '윤슬 베이스'도 맡아 보실 수 있어요.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ④ 클래스 -->
+    <section id="class">
+      <div class="container">
+        <h2 class="section-title">처음부터 천천히</h2>
+        <div class="photo-frame class-lead-photo">
+          <img src="images/class.jpg" alt="시향지로 고르기" onerror="this.parentElement.classList.add('is-missing')">
+          <div class="photo-fallback">class.jpg</div>
+        </div>
+        <div class="card-grid">
+          <!-- 카드 1 -->
+          <article class="card">
+            <div>
+              <h3 class="card-title">원데이 조향 클래스</h3>
+              <ul class="card-meta">
+                <li>처음 오시는 분께</li>
+                <li>약 2시간 · 1인 72,000원</li>
+                <li>30ml 향수 한 병</li>
+              </ul>
+              <p class="card-steps">순서: 대화로 떠올리기 → 시향지로 고르기 → 비율 맞춰 섞기 → 한 병 담아 가기</p>
+            </div>
+            <a href="class.html" class="btn btn-outline">자세히 보기</a>
+          </article>
+
+          <!-- 카드 2 -->
+          <article class="card">
+            <div>
+              <h3 class="card-title">취미반 4주</h3>
+              <ul class="card-meta">
+                <li>내 향을 더 깊게 알고 싶은 분께</li>
+                <li>주 1회 2시간 · 4번 · 1인 260,000원</li>
+                <li>향수 4병</li>
+              </ul>
+            </div>
+            <a href="#contact" class="btn btn-outline">문의</a>
+          </article>
+
+          <!-- 카드 3 -->
+          <article class="card">
+            <div>
+              <h3 class="card-title">다시 담기</h3>
+              <ul class="card-meta">
+                <li>다녀가신 분께</li>
+                <li>지난번 레시피 그대로 · 45,000원</li>
+                <li>30ml 향수 한 병</li>
+              </ul>
+            </div>
+            <a href="#contact" class="btn btn-outline">문의</a>
+          </article>
+        </div>
+        <p class="class-note">선물권과 4명 이상 단체 수업은 문의해 주세요.</p>
+      </div>
+    </section>
+
+    <!-- ⑤ 작품 -->
+    <section id="work">
+      <div class="container">
+        <h2 class="section-title">다녀가신 분들의 향</h2>
+        <div class="work-grid">
+          <figure class="work-item">
+            <div class="photo-frame">
+              <img src="images/work1.jpg" alt="바다 냄새를 담은 한 병" onerror="this.parentElement.classList.add('is-missing')">
+              <div class="photo-fallback">work1.jpg</div>
+            </div>
+            <figcaption class="work-caption">바다 냄새를 담은 한 병</figcaption>
+          </figure>
+          <figure class="work-item">
+            <div class="photo-frame">
+              <img src="images/work2.jpg" alt="조금씩 맡아 보며 맞춘 비율" onerror="this.parentElement.classList.add('is-missing')">
+              <div class="photo-fallback">work2.jpg</div>
+            </div>
+            <figcaption class="work-caption">조금씩 맡아 보며 맞춘 비율</figcaption>
+          </figure>
+          <figure class="work-item">
+            <div class="photo-frame">
+              <img src="images/work3.jpg" alt="비 오는 토요일, 두 분이 고른 향" onerror="this.parentElement.classList.add('is-missing')">
+              <div class="photo-fallback">work3.jpg</div>
+            </div>
+            <figcaption class="work-caption">비 오는 토요일, 두 분이 고른 향</figcaption>
+          </figure>
+        </div>
+        <div class="work-more">
+          <a href="works.html" class="btn btn-outline">작품 더 보기</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ⑥ 소식 -->
+    <section id="news">
+      <div class="container">
+        <h2 class="section-title">공방 이야기</h2>
+        <div class="card-grid">
+          <article class="news-card">
+            <div>
+              <h3 class="news-title">비 오는 날, 엄마와 향수 만들기</h3>
+              <p class="news-desc">창밖을 보며 함께 고른 향 이야기</p>
+            </div>
+            <a href="[확인 필요]" target="_blank" rel="noopener" class="news-link" data-pending="true">블로그에서 보기</a>
+          </article>
+          <article class="news-card">
+            <div>
+              <h3 class="news-title">향수 만드는 법, 용어 몰라도 괜찮아요</h3>
+              <p class="news-desc">좋아하는 계절부터 떠올려 보세요</p>
+            </div>
+            <a href="[확인 필요]" target="_blank" rel="noopener" class="news-link" data-pending="true">블로그에서 보기</a>
+          </article>
+          <article class="news-card">
+            <div>
+              <h3 class="news-title">영일대 바다 향 '윤슬 베이스'</h3>
+              <p class="news-desc">포항 바다를 향으로 담은 이야기</p>
+            </div>
+            <a href="[확인 필요]" target="_blank" rel="noopener" class="news-link" data-pending="true">블로그에서 보기</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ⑦ 자주 묻는 질문 -->
+    <section id="faq">
+      <div class="container">
+        <h2 class="section-title">자주 묻는 질문</h2>
+        <div class="faq-list">
+          <div class="faq-item">
+            <button type="button" class="faq-question" aria-expanded="false">
+              <span>Q 향을 잘 몰라도 괜찮나요?</span>
+              <span aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer">네. 어려운 용어 대신 좋아하는 계절과 장소를 여쭤보며 시작해요.</div>
+          </div>
+          <div class="faq-item">
+            <button type="button" class="faq-question" aria-expanded="false">
+              <span>Q 혼자 가도 되나요?</span>
+              <span aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer">네. 한 번에 4명까지만 받아서 혼자 오셔도 편안해요.</div>
+          </div>
+          <div class="faq-item">
+            <button type="button" class="faq-question" aria-expanded="false">
+              <span>Q 주차할 수 있나요?</span>
+              <span aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer">[확인 필요]</div>
+          </div>
+          <div class="faq-item">
+            <button type="button" class="faq-question" aria-expanded="false">
+              <span>Q 예약을 바꾸거나 취소하려면요?</span>
+              <span aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer">하루 전까지 전화나 카카오톡으로 알려 주세요.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ⑧ 문의 -->
+    <section id="contact">
+      <div class="container">
+        <div class="contact-box">
+          <h2 class="section-title">예약은 전화나 카카오톡으로 받아요</h2>
+          <p class="contact-desc">천천히 편안하게 물어봐 주세요.</p>
+          <div class="contact-buttons">
+            <a href="tel:054-000-0000" class="btn btn-accent">전화하기</a>
+            <a href="[확인 필요]" target="_blank" rel="noopener" class="btn btn-sub" data-pending="true">카카오톡 문의</a>
+          </div>
+          <div id="pending-notice" class="status-toast" role="status" aria-live="polite">준비 중이에요</div>
+          <ul class="contact-info">
+            <li>주소: 포항 영일대 해변에서 걸어서 5분, 골목 2층 · 정확한 주소 [확인 필요]</li>
+            <li>영업시간: 화 ~ 일 11:00 ~ 19:00 · 월요일 쉼</li>
+            <li>전화: 054-000-0000</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ⑨ 바닥글 -->
+  <footer class="site-footer">
+    <div class="container">
+      <ul class="footer-info">
+        <li>상호: 윤슬향방</li>
+        <li>대표자: 김윤슬</li>
+        <li>사업자등록번호: 12345678</li>
+        <li>주소: 포항 영일대 해변에서 걸어서 5분, 골목 2층 · 123-567</li>
+        <li>이메일: yoonseol@1234567</li>
+      </ul>
+      <p class="footer-ai-notice">일부 사진은 AI로 만들었습니다</p>
+    </div>
+  </footer>
+
+  <script>
+    // 사진이 없을 때 파일 이름 상자 표시 보정
+    document.querySelectorAll('.photo-frame img').forEach(function (img) {
+      if (img.complete && img.naturalWidth === 0) {
+        img.parentElement.classList.add('is-missing');
+      }
+    });
+
+    // 자주 묻는 질문 펼치기/닫기 (처음에는 닫힌 상태)
+    document.querySelectorAll('.faq-question').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var item = btn.closest('.faq-item');
+        var isOpen = item.classList.toggle('is-open');
+        btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      });
+    });
+
+    // 주소가 [확인 필요]인 링크는 누르면 "준비 중이에요" 안내
+    var noticeEl = document.getElementById('pending-notice');
+    document.querySelectorAll('[data-pending="true"]').forEach(function (link) {
+      link.addEventListener('click', function (e) {
+        e.preventDefault();
+        if (noticeEl) {
+          noticeEl.textContent = '준비 중이에요';
+          noticeEl.classList.add('is-visible');
+        }
+        alert('준비 중이에요');
+      });
+    });
+
+    // 예약 폼 제출 시 안내
+    document.querySelectorAll('form').forEach(function (form) {
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var msg = '온라인 예약은 준비 중이에요. 전화나 카카오톡으로 문의해 주세요';
+        if (noticeEl) {
+          noticeEl.textContent = msg;
+          noticeEl.classList.add('is-visible');
+        }
+        alert(msg);
+      });
+    });
+  </script>
+</body>
+</html>
